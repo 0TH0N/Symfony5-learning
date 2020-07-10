@@ -19,3 +19,7 @@ services:
             - myguestbook_db:/var/lib/postgresql/data
         networks:
             - myguestbook_network
+
+    redis:
+        image: redis:5-alpine
+        ports: [6379]

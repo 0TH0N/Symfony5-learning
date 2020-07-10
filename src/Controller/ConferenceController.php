@@ -8,6 +8,7 @@ use App\Repository\ConferenceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 use Twig\Error\LoaderError;
@@ -35,7 +36,6 @@ class ConferenceController extends AbstractController
     /**
      * @Route("/", name="homepage")
      *
-     * @param Environment          $twig
      * @param ConferenceRepository $conferenceRepository
      *
      * @return Response
@@ -43,8 +43,9 @@ class ConferenceController extends AbstractController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function index(ConferenceRepository $conferenceRepository)
+    public function index(ConferenceRepository $conferenceRepository, SessionInterface $session)
     {
+        dump($GLOBALS);
         return new Response($this->twig->render('conference/index.html.twig', [
             'conferences' => $conferenceRepository->findAll(),
         ]));
