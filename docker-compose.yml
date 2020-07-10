@@ -1,5 +1,12 @@
 version: '3.5'
 
+volumes:
+    myguestbook_db:
+
+networks:
+    myguestbook_network:
+        driver: bridge
+
 services:
     database:
         image: postgres:11-alpine
@@ -8,3 +15,7 @@ services:
             POSTGRES_PASSWORD: main
             POSTGRES_DB: main
         ports: [5432]
+        volumes:
+            - myguestbook_db:/var/lib/postgresql/data
+        networks:
+            - myguestbook_network
