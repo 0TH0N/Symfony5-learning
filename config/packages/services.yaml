@@ -1,3 +1,0 @@
-services:
-    Doctrine\ORM\EntityManagerInterface: "@doctrine.orm.default_entity_manager"
-    Doctrine\ORM\EntityManager: "@doctrine.orm.default_entity_manager"
