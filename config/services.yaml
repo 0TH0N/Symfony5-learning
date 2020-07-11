@@ -23,10 +23,6 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # Entity Manager
-    Doctrine\ORM\EntityManagerInterface: "@doctrine.orm.default_entity_manager"
-    Doctrine\ORM\EntityManager: "@doctrine.orm.default_entity_manager"
-
     App\EntityListener\ConferenceEntityListener:
         tags:
             - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Conference' }
