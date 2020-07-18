@@ -2,6 +2,7 @@ version: '3.5'
 
 volumes:
     myguestbook_db:
+    myguestbook_rabbitmq:
 
 networks:
     myguestbook_network:
@@ -25,5 +26,15 @@ services:
         image: redis:5-alpine
         ports:
             - 6379:6379
+        networks:
+            - myguestbook_network
+
+    rabbitmq:
+        image: rabbitmq:3.7.17-management-alpine
+        ports:
+            - 15672:15672
+            - 5672:5672
+        volumes:
+            - myguestbook_rabbitmq:/var/lib/rabbitmq
         networks:
             - myguestbook_network
