@@ -6,6 +6,7 @@ easy_admin:
             - { route: 'homepage', label: 'Back to the website', icon: 'home' }
             - { entity: 'Conference', label: 'Conferences', icon: 'map-marker' }
             - { entity: 'Comment', label: 'Comments', icon: 'comments' }
+            - { entity: 'Admin', label: 'Admins', icons: 'admins' }
 
     entities:
         Conference:
@@ -17,6 +18,8 @@ easy_admin:
                     - author
                     - { property: 'email', type: 'email' }
                     - { property: 'createdAt', type: 'datetime' }
+                    - { property: 'state' }
+                    - { property: 'photoFilename', type: 'image', base_path: "/uploads/photos", label: 'Photo' }
                 sort: ['createdAt', 'ASC']
                 filters: ['conference']
             edit:
@@ -24,5 +27,8 @@ easy_admin:
                     - { property: 'conference' }
                     - { property: 'createdAt', type: datetime, type_options: { attr: { readonly: true } } }
                     - 'author'
+                    - { property: 'state' }
                     - { property: 'email', type: 'email' }
                     - text
+        Admin:
+            class: App\Entity\Admin

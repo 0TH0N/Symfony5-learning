@@ -2,6 +2,7 @@ version: '3.5'
 
 volumes:
     myguestbook_db:
+    myguestbook_rabbitmq:
 
 networks:
     myguestbook_network:
@@ -14,8 +15,26 @@ services:
             POSTGRES_USER: main
             POSTGRES_PASSWORD: main
             POSTGRES_DB: main
-        ports: [5432]
+        ports:
+            - 5432:5432
         volumes:
             - myguestbook_db:/var/lib/postgresql/data
+        networks:
+            - myguestbook_network
+
+    redis:
+        image: redis:5-alpine
+        ports:
+            - 6379:6379
+        networks:
+            - myguestbook_network
+
+    rabbitmq:
+        image: rabbitmq:3.7.17-management-alpine
+        ports:
+            - 15672:15672
+            - 5672:5672
+        volumes:
+            - myguestbook_rabbitmq:/var/lib/rabbitmq
         networks:
             - myguestbook_network
