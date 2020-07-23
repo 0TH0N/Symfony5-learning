@@ -38,3 +38,11 @@ services:
             - myguestbook_rabbitmq:/var/lib/rabbitmq
         networks:
             - myguestbook_network
+
+    mailcatcher:
+        image: schickling/mailcatcher
+        ports:
+            - 1025:1025
+            - 1080:1080
+        networks:
+            - myguestbook_network
