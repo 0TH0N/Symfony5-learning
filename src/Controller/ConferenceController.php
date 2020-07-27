@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 use Twig\Error\LoaderError;
@@ -95,6 +97,7 @@ class ConferenceController extends AbstractController
      * @param Request           $request
      * @param Conference        $conference
      * @param CommentRepository $commentRepository
+     * @param NotifierInterface $notifier
      * @param string            $photoDir
      *
      * @return Response
@@ -106,6 +109,7 @@ class ConferenceController extends AbstractController
         Request $request,
         Conference $conference,
         CommentRepository $commentRepository,
+        NotifierInterface $notifier,
         string $photoDir
     ) {
         $comment = new Comment();
@@ -138,8 +142,13 @@ class ConferenceController extends AbstractController
             ];
 
             $this->bus->dispatch(new CommentMessage($comment->getId(), $context));
+            $notifier->send(new Notification('Thank you for the feedback; your comment will be posted after moderation.', ['browser']));
 
             return $this->redirectToRoute('conference', ['slug' => $conference->getSlug()]);
+        }
+
+        if ($form->isSubmitted()) {
+            $notifier->send(new Notification('Can you check your submission? There are some problems with it.', ['browser']));
         }
 
         $offset = max(0, $request->query->getInt('offset', 0));
