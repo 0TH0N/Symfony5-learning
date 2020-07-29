@@ -5,6 +5,7 @@ namespace App\MessageHandler;
 use App\ImageOptimizer;
 use App\Message\CommentMessage;
 use App\Notification\CommentReviewNotification;
+use App\Notification\UserCommentPublishedNotification;
 use App\Repository\CommentRepository;
 use App\SpamChecker;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,6 +13,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Workflow\WorkflowInterface;
 
 final class CommentMessageHandler implements MessageHandlerInterface
@@ -110,6 +112,8 @@ final class CommentMessageHandler implements MessageHandlerInterface
 
             $this->workflow->apply($comment, 'optimize');
             $this->entityManager->flush();
+
+            $this->notifier->send(new UserCommentPublishedNotification($comment), new Recipient($comment->getEmail()));
         } elseif ($this->logger) {
             $this->logger->debug(
                 'Dropping comment message',
