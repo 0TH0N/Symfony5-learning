@@ -7,23 +7,23 @@
     <body>
       <trans-unit id="LNAVleg" resname="Give your feedback!">
         <source>Give your feedback!</source>
-        <target>Оставьте свой отзыв!</target>
+        <target>Give your feedback!</target>
       </trans-unit>
       <trans-unit id="3Mg5pAF" resname="View">
         <source>View</source>
-        <target>Просмотреть</target>
+        <target>View</target>
       </trans-unit>
       <trans-unit id="eOy4.6V" resname="Conference Guestbook">
         <source>Conference Guestbook</source>
-        <target>Гостевая книга конференции</target>
+        <target>Conference Guestbook</target>
       </trans-unit>
       <trans-unit id="LGsuJTw" resname="Your name">
         <source>Your name</source>
-        <target>Ваше имя</target>
+        <target>Your name</target>
       </trans-unit>
       <trans-unit id="mC2ePrm" resname="text">
         <source>text</source>
-        <target>сообщение</target>
+        <target>text</target>
       </trans-unit>
       <trans-unit id="giREF.l" resname="email">
         <source>email</source>
@@ -31,19 +31,19 @@
       </trans-unit>
       <trans-unit id="VcZND81" resname="photo">
         <source>photo</source>
-        <target>фото</target>
+        <target>photo</target>
       </trans-unit>
       <trans-unit id="dUkL17k" resname="submit">
         <source>submit</source>
-        <target>отправить</target>
+        <target>Submit</target>
       </trans-unit>
       <trans-unit id="maMQz7W" resname="nb_of_comments">
         <source>nb_of_comments</source>
-        <target>{count, plural, =0 {Нет комментариев.} =1 {1 комментарий.} other {# комментариев.}}</target>
+        <target>{count, plural, =0 {no comments.} =1 {There is one comment.} other {There are # comments.}}</target>
       </trans-unit>
       <trans-unit id="7bokozx" resname="No comments have been posted yet for this conference.">
         <source>No comments have been posted yet for this conference.</source>
-        <target>Не было ещё ни одного комментария. Будьте первым :)</target>
+        <target>No comments have been posted yet for this conference.</target>
       </trans-unit>
     </body>
   </file>

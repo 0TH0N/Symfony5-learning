@@ -2,7 +2,7 @@ SHELL := /bin/bash
 
 tests:
 	symfony console doctrine:fixtures:load -n
-	symfony run bin/phpunit
+	symfony run bin/phpunit --verbose
 .PHONY: tests
 
 start:
