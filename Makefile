@@ -16,3 +16,6 @@ start:
 stop:
 	symfony server:stop
 	docker-compose down
+
+log:
+	symfony server:log
